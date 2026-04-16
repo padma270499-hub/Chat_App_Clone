@@ -11,8 +11,8 @@ class NavigationItemsPage extends StatelessWidget {
       builder: (context, value, child) {
         return NavigationBar(
           destinations: [
-            NavigationDestination(icon: Icon(Icons.person), label: "Contacts"),
             NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+            NavigationDestination(icon: Icon(Icons.person), label: "Contacts"),
             NavigationDestination(
               icon: Icon(Icons.notifications),
               label: "Notification",
