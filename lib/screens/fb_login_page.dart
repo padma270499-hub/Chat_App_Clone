@@ -1,5 +1,8 @@
 import 'package:chat_app_1/screens/home_screen.dart';
+import 'package:chat_app_1/screens/signup_page.dart';
+import 'package:chat_app_1/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FbLoginPage extends StatefulWidget {
@@ -10,16 +13,23 @@ class FbLoginPage extends StatefulWidget {
 }
 
 class _FbLoginPageState extends State<FbLoginPage> {
-
+  bool ishidden = true;
   final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login Page"),
+        backgroundColor: Colors.blue,
+        title: Text("Login Page",style: TextStyle(color: Colors.white),),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back,color: Colors.white),
+
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -30,12 +40,12 @@ class _FbLoginPageState extends State<FbLoginPage> {
               children: [
                 Center(child: Image.asset("assets/images/login img.jpg")),
                 SizedBox(height: 20),
-                // Spacer(),
                 Text("Welcome back! Sign into your account"),
                 SizedBox(height: 20),
-                // Spacer(),
                 TextFormField(
-                  validator: (value){
+                   keyboardType: TextInputType.emailAddress,
+                  // autovalidateMode: AutovalidateMode.always,
+                  validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Please Enter your Email";
                     }
@@ -49,14 +59,27 @@ class _FbLoginPageState extends State<FbLoginPage> {
                   ),
                 ),
                 SizedBox(height: 25),
-                // Spacer(),
                 TextFormField(
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  // keyboardType: TextInputType.number,
+                  // autovalidateMode: AutovalidateMode.always,
+                  obscureText: ishidden,
                   validator: (value) {
-                    if( value == null || value.isEmpty){
+                    if (value == null || value.isEmpty) {
                       return "Please Enter Your Password";
                     }
                   },
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          ishidden = !ishidden;
+                        });
+                      },
+                      icon: Icon(
+                        ishidden ? Icons.visibility_off : Icons.visibility,
+                      ),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -71,11 +94,16 @@ class _FbLoginPageState extends State<FbLoginPage> {
                   height: 55,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context){
-                        return HomeScreen();
+                      if (formkey.currentState!.validate()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return WelcomeScreen();
+                            },
+                          ),
+                        );
                       }
-                      ),);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
@@ -98,7 +126,7 @@ class _FbLoginPageState extends State<FbLoginPage> {
                     style: TextStyle(color: Colors.blue, fontSize: 18),
                   ),
                 ),
-                SizedBox(height: 5,),
+                SizedBox(height: 5),
                 // Spacer(),
                 Row(
                   children: [
@@ -115,10 +143,17 @@ class _FbLoginPageState extends State<FbLoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account", style: TextStyle(fontSize: 15)),
+                    Text(
+                      "Don't have an account?",
+                      style: TextStyle(fontSize: 15),
+                    ),
                     SizedBox(width: 5),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return SignupPage();
+                        },),);
+                      },
                       child: Text(
                         "Sign Up",
                         style: TextStyle(color: Colors.blue, fontSize: 15),
@@ -149,7 +184,7 @@ class _FbLoginPageState extends State<FbLoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 3,),
+                SizedBox(height: 3),
                 SizedBox(
                   width: double.infinity,
                   child: Card(
@@ -162,7 +197,10 @@ class _FbLoginPageState extends State<FbLoginPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset("assets/images/google logo.jpg",height: 22,),
+                          Image.asset(
+                            "assets/images/google logo.jpg",
+                            height: 22,
+                          ),
                           SizedBox(width: 10),
                           Text(
                             "Login with Google",

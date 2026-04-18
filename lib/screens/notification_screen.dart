@@ -1,3 +1,5 @@
+import 'package:chat_app_1/screens/home_screen.dart';
+import 'package:chat_app_1/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -7,7 +9,7 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
+        leading:  Icon(Icons.arrow_back),
         title: Text("Store"),
         centerTitle: true,
         actions: [Icon(Icons.search)],

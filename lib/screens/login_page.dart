@@ -9,6 +9,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool isHidden = true;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -44,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20),
               TextFormField(
+                obscureText: isHidden,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Enter Your Password";
@@ -51,6 +53,16 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 cursorColor: Colors.red,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isHidden=!isHidden;
+                      });
+                    },
+                    icon: Icon(
+                      isHidden ? Icons.visibility_off : Icons.visibility,
+                    ),
+                  ),
                   hintText: "Enter valid Password",
                   hintStyle: TextStyle(color: Colors.red),
                   border: OutlineInputBorder(

@@ -17,8 +17,8 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   List Screens = [
-    SplashScreen(),
-    FbLoginPage(),
+    // SplashScreen(),
+    // FbLoginPage(),
     HomeScreen(),
     ContactScreen(),
     NotificationScreen(),

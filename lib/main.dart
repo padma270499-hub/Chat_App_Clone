@@ -5,6 +5,7 @@ import 'package:chat_app_1/screens/fb_login_page.dart';
 import 'package:chat_app_1/screens/grid_view.dart';
 import 'package:chat_app_1/screens/login_page.dart';
 import 'package:chat_app_1/screens/not_prac.dart';
+import 'package:chat_app_1/screens/signup_page.dart';
 import 'package:chat_app_1/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:chat_app_1/screens/setting_screen.dart';
