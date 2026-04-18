@@ -1,3 +1,4 @@
+import 'package:chat_app_1/screens/fb_login_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -6,29 +7,40 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Container(
+      backgroundColor: Colors.transparent,
+      body: GestureDetector(
+        onDoubleTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return FbLoginPage();
+              },
+            ),
+          );
+        },
+        child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Color(0xFFE76F51),
-                Color(0xFFF4A261),
-              ],
+              colors: [Color(0xFFE76F51), Color(0xFFF4A261)],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
           ),
-      child: Center(
-        child: Text("Hello!",
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-            color: Colors.white70,
-          ),),
+          child: Center(
+            child: Text(
+              "Hello!",
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+        ),
       ),
-    ),
     );
   }
 }

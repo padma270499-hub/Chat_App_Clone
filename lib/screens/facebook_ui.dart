@@ -32,7 +32,8 @@ class _FacebookUiState extends State<FacebookUi> {
           SizedBox(width: 10),
         ],
       ),
-      body: Column(
+      body: ListView(
+        scrollDirection: Axis.vertical,
         children: [
           Container(
             height: 60,
@@ -51,7 +52,7 @@ class _FacebookUiState extends State<FacebookUi> {
             ),
           ),
 
-          Divider(thickness: 1,height: 1,color: Colors.grey),
+          Divider(thickness: 1, height: 1, color: Colors.grey),
 
           Container(
             color: Colors.white,
@@ -71,24 +72,20 @@ class _FacebookUiState extends State<FacebookUi> {
                 ),
                 child: const Text("What's on your mind?"),
               ),
-              trailing: Icon(Icons.photo_album_outlined,size: 30,),
+              trailing: Icon(Icons.photo_album_outlined, size: 30),
             ),
           ),
 
-          SizedBox(height: 10),
-
-          Container(
-            // height: 180,
-            color: Colors.white,
+          SizedBox(
+            height: 180,
             child: ListView(
               scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
               children: [
-                storyCard("Create story",
-                    "https://i.pravatar.cc/150?img=1"),
-                storyCard("User 1",
-                    "https://i.pravatar.cc/150?img=2"),
-                storyCard("User 2",
-                    "https://i.pravatar.cc/150?img=4"),
+                storyCard("Create story", "https://picsum.photos/200"),
+                storyCard("User 1", "https://picsum.photos/200"),
+                storyCard("User 2", "https://via.placeholder.com/150"),
               ],
             ),
           ),
@@ -96,23 +93,24 @@ class _FacebookUiState extends State<FacebookUi> {
       ),
     );
   }
+
   static Widget storyCard(String name, String image) {
     return Container(
       width: 120,
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
+        color: Colors.red,
         borderRadius: BorderRadius.circular(15),
-        image: DecorationImage(
-          image: NetworkImage(image),
-          fit: BoxFit.cover,
-        ),
+        image: DecorationImage(image: NetworkImage(image), fit: BoxFit.cover),
       ),
       alignment: Alignment.bottomLeft,
       padding: const EdgeInsets.all(8),
       child: Text(
         name,
         style: const TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold),
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
