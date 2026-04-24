@@ -29,6 +29,10 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
+              Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                child: ExpansionTile(title: Text("pages"),children: [ListTile(title: Text("Home"),)],
+                ),
+              ),
               Container(
                 height: 100,
                 decoration: BoxDecoration(

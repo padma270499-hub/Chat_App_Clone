@@ -1,5 +1,5 @@
-import 'package:chat_app_1/screens/home_screen.dart';
-import 'package:chat_app_1/screens/welcome_screen.dart';
+import 'package:chat_app_1/screens/App1_screens/home_screen.dart';
+import 'package:chat_app_1/screens/App1_screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatelessWidget {

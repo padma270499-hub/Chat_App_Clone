@@ -1,3 +1,4 @@
+import 'package:chat_app_1/screens/App1_screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,7 +10,6 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-
   bool ishidden = true;
   bool ishidden2 = true;
 
@@ -17,7 +17,12 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back, color: Colors.white),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+        ),
         backgroundColor: Colors.blue,
         title: Text("Sign Up", style: TextStyle(color: Colors.white)),
         centerTitle: true,
@@ -56,14 +61,20 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               SizedBox(height: 10),
-              TextFormField(obscureText: ishidden,
+              TextFormField(
+                obscureText: ishidden,
                 // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
-                  suffixIcon: IconButton(onPressed: (){
-                    setState(() {
-                      ishidden =! ishidden;
-                    });
-                  }, icon: Icon(ishidden?Icons.visibility_off:Icons.visibility)),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        ishidden = !ishidden;
+                      });
+                    },
+                    icon: Icon(
+                      ishidden ? Icons.visibility_off : Icons.visibility,
+                    ),
+                  ),
                   hintText: "Enter Password",
                   label: Text("Password"),
                   prefixIcon: Icon(Icons.lock),
@@ -73,13 +84,19 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               SizedBox(height: 10),
-              TextFormField(obscureText: ishidden2,
+              TextFormField(
+                obscureText: ishidden2,
                 decoration: InputDecoration(
-                  suffixIcon: IconButton(onPressed: (){
-                    setState(() {
-                      ishidden2 =! ishidden2;
-                    });
-                  }, icon: Icon(ishidden2?Icons.visibility_off:Icons.visibility)),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        ishidden2 = !ishidden2;
+                      });
+                    },
+                    icon: Icon(
+                      ishidden2 ? Icons.visibility_off : Icons.visibility,
+                    ),
+                  ),
                   hintText: "Reenter Password",
                   label: Text("Confirm Password"),
                   prefixIcon: Icon(Icons.lock),
@@ -89,12 +106,16 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               SizedBox(height: 10),
-        
+
               SizedBox(
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                     return WelcomeScreen();
+                    },));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
@@ -107,8 +128,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 5,),
-
+              SizedBox(height: 5),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

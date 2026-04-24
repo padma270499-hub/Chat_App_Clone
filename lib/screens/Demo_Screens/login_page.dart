@@ -1,4 +1,4 @@
-import 'package:chat_app_1/screens/facebook_ui.dart';
+import 'package:chat_app_1/screens/facebook_screens/facebook_ui.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
